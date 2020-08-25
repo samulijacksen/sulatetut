@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Search from './components/search';
+import Jobs from './components/Jobs';
+import {BrowserRouter as Router, Route, link, Switch} from 'react-router-dom';
+import Weather from './Weather';
 
 function App() {
   const initjobs = [
@@ -24,16 +27,19 @@ function App() {
   .then(response =>response.json())
   .then(json=>setJobs([...json]));
 
-
-  const rows = () => jobs.map(job => {
-    return <p><input type ="checkbox"></input>{job.tyotehtava}{job.osoite}, <a href={job.linkki}> lisätietoa </a></p>
-  })
   return (
+    <Router>
     <div className="App">
       <Header />
+      <Route path="Weather">
+      <Weather />
+      </Route>
+      <Route path="/">
       <Search />
-      {rows()}
+      <Jobs jobs={jobs} />
+      </Route>
     </div>
+    </Router>
   );
 }
 
