@@ -1,13 +1,23 @@
 import React from 'react';
+import Jobs from './Jobs';
 
-function Job({ job }) {
-        //return <p><input type ="checkbox"></input>{job.tyotehtava}{job.osoite}, <a href={job.linkki}> lisätietoa </a></p>
-  return (
-      <table>
+function Job({ job }) { Jobs, onCompleted}) {
+       
+    const [checked] = useState(false);
+
+    const handleCompleted = () => {
+        onCompleted(job);
+    }
+  
+  const getStyle = (complete) => ({
+   textDecoration: complete ? 'line-through' : 'none'
+  })
+        return (
+      <table key={job.id} style={getComputedStyle(job.completed)}>
           <tbody>
               <tr>
                   <td width="1%">
-                  <input type ="checkbox"></input>
+                  <input type ="checkbox" onChange={handleCompleted}></input>
                   </td>
                 <td width="59%">
                     {job.tyotehtava}
