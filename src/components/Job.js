@@ -1,7 +1,6 @@
-import React from 'react';
-import Jobs from './Jobs';
+import React, { useState }  from 'react';
 
-function Job({ job }) { Jobs, onCompleted}) {
+function Job({ job, onCompleted}) {
        
     const [checked] = useState(false);
 
@@ -13,11 +12,11 @@ function Job({ job }) { Jobs, onCompleted}) {
    textDecoration: complete ? 'line-through' : 'none'
   })
         return (
-      <table key={job.id} style={getComputedStyle(job.completed)}>
+      <table key={job.id} style={getStyle(job.completed)}>
           <tbody>
               <tr>
                   <td width="1%">
-                  <input type ="checkbox" onChange={handleCompleted}></input>
+                  <input type ="checkbox" defaultChecked={checked} onChange={handleCompleted}></input>
                   </td>
                 <td width="59%">
                     {job.tyotehtava}

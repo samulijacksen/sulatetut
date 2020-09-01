@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function Search() {
+function Search({onFilter}) {
 const initSearch = {title:''}
 const [addSearch, setSearch] = useState(initSearch);
 
-  const handlefilter = (e) => {
+  const handleFilter = (e) => {
     setSearch({[e.target.name]: e.target.value});
-    onfilter(e.target.value)
+    onFilter(e.target.value);
   }
   return (
     <p>
@@ -14,7 +14,8 @@ const [addSearch, setSearch] = useState(initSearch);
       name="title"
       style={{padding: 'spx'}}
       placeholder="hae"
-      onChange={handlefilter}>
+      onChange={handleFilter}
+      value={addSearch.title}>
       </input>
     </p>
   )

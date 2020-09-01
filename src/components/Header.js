@@ -1,9 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+
 function Header() {
   return (
     <header style={headerStyle}>
     <h1>työpaikkoja vantaalla </h1>
+    <h1>P-BLOCC </h1>
     <Link to="/" style={linkStyle}>Duunit</Link>  <Link to="/weather" style={linkStyle}>Säätiedot</Link>
     </header>
   )
