@@ -12,6 +12,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Weather from './components/Weather';
 
+import Lampotila from './components/Lampotila'
+
+
 function App() {
 
   const initJobs = []
@@ -57,6 +60,7 @@ function App() {
         <Switch>
           <Route path="/weather">
             <Weather />
+            <Lampotila/>
           </Route>
           <Route path="/">
             <Search onFilter={handleFilter} />

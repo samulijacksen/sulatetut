@@ -4,6 +4,10 @@ import { VictoryChart, VictoryLine } from 'victory'
 function Weather() {
 
     return (
+        <div aling="middle">
+            <h3>P-PLOCC Lämpötila</h3>
+        
+
         <VictoryChart
             domainPadding={{ x: 30, y: 10 }}
             width={1000}
@@ -22,9 +26,12 @@ function Weather() {
                         { stroke: "green", strokeWidth: 2 }
                 }}
                 x="experiment"
-                y="experiment"/>
-                </VictoryChart>
+                y="experiment" />
+        </VictoryChart>
+        </div>
+    
+         
     )
 
-            }    
+}
 export default Weather;
