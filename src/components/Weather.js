@@ -1,5 +1,5 @@
 import React from 'react'
-import { VictoryChart, VictoryLine } from 'victory'
+import { VictoryChart, VictoryLine, VictoryHistogram } from 'victory'
 
 function Weather() {
 
@@ -14,21 +14,47 @@ function Weather() {
             height={250}>
             <VictoryLine
                 data={[
-                    { experiment: "1.1.", actual: -10 },
-                    { experiment: "2.1.", actual: -5 },
-                    { experiment: "3.1.", actual: -0 },
+                    { experiment: "1.1.", actual: 10 },
+                    { experiment: "2.1.", actual: 5 },
+                    { experiment: "3.1.", actual: 0 },
                     { experiment: "4.1.", actual: -10 },
                     { experiment: "5.1.", actual: -5 },
-                    { experiment: "6.1.", actual: -0 },
+                    { experiment: "6.1.", actual: -0 }
                 ]}
                 style={{
                     data:
                         { stroke: "green", strokeWidth: 2 }
                 }}
                 x="experiment"
-                y="experiment" />
+                y="actual" />
         </VictoryChart>
+        
+        <VictoryChart>
+  <VictoryHistogram
+    style={{ 
+        data:
+         { fill: '#F1737F' }}}
+    cornerRadius={3}
+    data={[
+      { x: 0 },
+      { x: 1 },
+      { x: 1 },
+      { x: 1 },
+      { x: 1 },
+      { x: 2 },
+      { x: 2 },
+      { x: 3 },
+      { x: 4 },
+      { x: 7 },
+      { x: 7 },
+      { x: 10 }
+    ]}
+  />
+</VictoryChart>
+
+
         </div>
+       
     
          
     )
