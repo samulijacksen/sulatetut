@@ -9,15 +9,23 @@ function Weather() {
   const initWeather = [];
   const [weather, setWeather] = useState(initWeather);
 
-  fetch('https://funcvariaiot.azurewebsites.net/api/HttpTriggerGetIotData?code=qO5qkShg0osHqY0BB2nfXI/anPgQ/K/3mIF7VTCFfaTdrvo6wl6DKw==')
+  fetch('https://funcvariaiot.azurewebsites.net/api/HttpTriggerGetIotData?code=qO5qkShg0osHqY0BB2nfXI/anPgQ/K/3mIF7VTCFfaTdrvo6wl6DKw==&amount=50')
     .then(response => response.json())
     .then(json => setWeather([...json]));
 
+    let humtempkey = 1;
+    let chartTempData = [];
+    let chartHumData =[];
   const rows = () => weather.slice(0, 24).reverse().map(temphum => {
-    const measurmentDate = temphum.PublishedAt.split('T')[0]
-    const measurmentTime = temphum.PublishedAt.split('T')[1].split(':')[0]
-    return <div> <b>Pvm</b>{measurmentDate},<b>Klo</b>{measurmentTime},{temphum.PublishedAt}--------<b>Ilmankosteus</b>{temphum.Hum.split('.')[0]}%--------<b>Lämpötila</b>{temphum.Temp.split('.')[0]}°C </div>
+    const measurmentDate = temphum.PublishedAt.split('T')[0].split('-')[2] + '.' + temphum.PublishedAt.split('T')[0].split('-')[1] + '.' + temphum.PublishedAt.split('T')[0].split('-')[0]
+    const measurmentTime = temphum.PublishedAt.split('T')[1] + ('.') + temphum.PublishedAt.split(':')[0] + temphum.PublishedAt.split(':')[0] + temphum.PublishedAt.split(':')[1] + temphum.PublishedAt.split(':')[1]
+   chartTempData.push({ x: String(measurmentTime),y: temphum.Temp});
+   chartHumData.push({ experiment: String(measurmentTime), actual: parseInt(temphum.hum), label: String (temphum.hum)});   
+    return <div key={humtempkey++}> <b>Pvm</b>{measurmentDate},<b>Klo</b>{measurmentTime},{temphum.PublishedAt}--------<b>Ilmankosteus</b>{temphum.Hum.split('.')[0]}%--------<b>Lämpötila</b>{temphum.Temp.split('.')[0]}°C </div>
   })
+  
+  const showTemperature = chartTempData;
+  const Showhumidity = chartHumData;
   return (
 
     <div aling="middle">
