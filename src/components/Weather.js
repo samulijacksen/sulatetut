@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { VictoryChart, VictoryLine, VictoryHistogram, VictoryGroup, VictoryBar, VictoryPortal, VictoryLabel } from 'victory'
+import { VictoryChart, VictoryLine, VictoryHistogram} from 'victory'
 
 function Weather() {
 
@@ -13,19 +13,20 @@ function Weather() {
     .then(response => response.json())
     .then(json => setWeather([...json]));
 
-    let humtempkey = 1;
-    let chartTempData = [];
-    let chartHumData =[];
+  let humtempkey = 1;
+  let chartTempData = [];
+  let chartHumData = [];
   const rows = () => weather.slice(0, 24).reverse().map(temphum => {
     const measurmentDate = temphum.PublishedAt.split('T')[0].split('-')[2] + '.' + temphum.PublishedAt.split('T')[0].split('-')[1] + '.' + temphum.PublishedAt.split('T')[0].split('-')[0]
     const measurmentTime = temphum.PublishedAt.split('T')[1] + ('.') + temphum.PublishedAt.split(':')[0] + temphum.PublishedAt.split(':')[0] + temphum.PublishedAt.split(':')[1] + temphum.PublishedAt.split(':')[1]
-   chartTempData.push({ x: String(measurmentTime),y: temphum.Temp});
-   chartHumData.push({ experiment: String(measurmentTime), actual: parseInt(temphum.hum), label: String (temphum.hum)});   
-    return <div key={humtempkey++}> <b>Pvm</b>{measurmentDate},<b>Klo</b>{measurmentTime},{temphum.PublishedAt}--------<b>Ilmankosteus</b>{temphum.Hum.split('.')[0]}%--------<b>Lämpötila</b>{temphum.Temp.split('.')[0]}°C </div>
+    chartTempData.push({ x: String(measurmentTime), y: temphum.Temp });
+    chartHumData.push({ experiment: String(measurmentTime), actual: parseInt(temphum.hum), label: String(temphum.hum) });
+    return <div key={humtempkey++}> <b>Pvm</b>{measurmentDate},<b>Klo</b>{measurmentTime}, {temphum.PublishedAt}--------<b>Ilmankosteus</b>{temphum.Hum.split('.')[0]}%--------<b>Lämpötila</b>{temphum.Temp.split('.')[0]}°C </div>
   })
-  
+
   const showTemperature = chartTempData;
   const Showhumidity = chartHumData;
+
   return (
 
     <div aling="middle">
@@ -84,33 +85,6 @@ function Weather() {
             { x: 12 }
           ]}
         />
-      </VictoryChart>
-      <div aling="middle"></div>
-
-      <h4>P-PLOCC Lämpötila</h4>
-      <VictoryChart domainPadding={{ x: 60 }}>
-        <VictoryGroup offset={15}>
-          <VictoryBar
-            labels={["maanantai", "tiistai", "keskiviikko", "torstai", "perjantai"]}
-            style={{
-              labels: { fontSize: 15, fill: "red" }
-            }}
-            labelComponent={<VictoryPortal><VictoryLabel /></VictoryPortal>}
-            data={[{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 5 }, { x: 6, y: 6 }, { x: 7, y: 8 }]}
-          />
-          <VictoryBar
-            data={[{ x: 1, y: 2 }, { x: 2, y: 1 }, { x: 3, y: 7 }]}
-          />
-          <VictoryBar
-            data={[{ x: 1, y: 3 }, { x: 2, y: 4 }, { x: 3, y: 9 }]}
-          />
-          <VictoryBar
-            data={[{ x: 4, y: 5 }, { x: 7, y: 7 }]}
-          />
-          <VictoryBar
-            data={[{ x: 4, y: 8 }, { x: 7, y: 10 }]}
-          />
-        </VictoryGroup>
       </VictoryChart>
 
     </div >
