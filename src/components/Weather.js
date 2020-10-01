@@ -24,7 +24,7 @@ function Weather() {
     const fixedTime = String(convertUTCDateToLocalDate(new Date(temphum.PublishedAt)));
     const time = fixedTime.split(' ')[4].split(':')[0] + '.' + fixedTime.split(' ')[4].split(':')[1];
     const measurmentDate = temphum.PublishedAt.split('T')[0].split('-')[2] + '.' + temphum.PublishedAt.split('T')[0].split('-')[1] + '.' + temphum.PublishedAt.split('T')[0].split('-')[0];
-    const measurmentTime = temphum.PublishedAt.split('T')[1].split(':')[0] + ('.') + temphum.PublishedAt.split('T')[1].split(':')[1];
+    //const measurmentTime = temphum.PublishedAt.split('T')[1].split(':')[0] + ('.') + temphum.PublishedAt.split('T')[1].split(':')[1];
     chartHumData.push({ x: String(time), y: parseInt(temphum.Hum), label: String(temphum.Hum) });
     chartTempData.push({ experiment: String(time), actual: parseInt(temphum.Temp) });
     return <div key={humtempkey++}> <b>Pvm</b>{measurmentDate} <b>Klo </b>{time}--------<b>Ilmankosteus</b>{temphum.Hum.split('.')[0]}%--------<b>Lämpötila</b>{temphum.Temp.split('.')[0]}°C </div>
@@ -47,7 +47,7 @@ function Weather() {
       <VictoryChart
         domainPadding={{ x: 30, y: 10 }}
         width={1300}
-        height={350}>
+        height={250}>
         <VictoryLine
           data={showTemperature}
           style={{
