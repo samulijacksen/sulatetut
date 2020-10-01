@@ -46,8 +46,8 @@ function Weather() {
 
       <VictoryChart
         domainPadding={{ x: 30, y: 10 }}
-        width={1000}
-        height={250}>
+        width={1300}
+        height={350}>
         <VictoryLine
           data={showTemperature}
           style={{
