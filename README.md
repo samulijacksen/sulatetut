@@ -1,3 +1,7 @@
+victorychart: tarjoaa oletusakselin victorybar componenteille tietojen perusteella
+react dom: mahdollistaa linkkien tekemisen
+weather: hakee säätieto sivun missä näkyy kosteus ja lämpötila tiedot.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
